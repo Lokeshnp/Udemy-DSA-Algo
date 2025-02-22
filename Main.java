@@ -33,7 +33,35 @@ public class Main {
         System.out.println("==========================");
         myLinkedList.printList();
         System.out.println("==========================");
-        System.out.println(myLinkedList.getValueByIndex(2).value);
+        System.out.println(myLinkedList.getNodeByIndex(2).value);
+        System.out.println("set the index by value");
+        System.out.println("==========================");
+        myLinkedList.printList();
+        System.out.println(myLinkedList.setIndex(0, 5));
+        myLinkedList.printList();
+        System.out.println("insert the node");
+        System.out.println("==========================");
+        myLinkedList.printList();
+        System.out.println(myLinkedList.insert(2, 10));
+        System.out.println("Node inseted");
+        System.out.println("==========================");
+        myLinkedList.printList();
+
+        System.out.println("Removing the node");
+        System.out.println("==========================");
+        myLinkedList.printList();
+        System.out.println("Node removed");
+        System.out.println(myLinkedList.remove(2).value);
+        System.out.println("==========================");
+        myLinkedList.printList();
+
+        System.out.println("reverse");
+        System.out.println("==========================");
+        myLinkedList.printList();
+        System.out.println("reversed");
+        myLinkedList.reverse();
+        System.out.println("==========================");
+        myLinkedList.printList();
 
     }
 }
