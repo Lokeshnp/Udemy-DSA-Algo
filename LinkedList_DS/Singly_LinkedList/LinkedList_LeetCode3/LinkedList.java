@@ -1,8 +1,4 @@
-package LinkedList_LeetCode4;
-
-import java.util.HashSet;
-import java.util.Set;
-
+package LinkedList_DS.Singly_LinkedList.LinkedList_LeetCode3;
 
 public class LinkedList {
 
@@ -74,40 +70,31 @@ public class LinkedList {
         length++;
     }
 
-//    public void removeDuplicates(){
-//        Node previous = null;
-//        Node current = head;
-//        Set<Integer> values = new HashSet<>();
-//        while(current != null){
-//            if(values.contains(current.value)) {
-//                previous.next = current.next;
-//                length -= 1;
-//            }else {
-//                values.add(current.value);
-//                previous = current;
-//            }
-//            current = current.next;
-//        }
-//
-//    }
-
-    public void removeDuplicates(){
+    public void partitionList(int x){
+        if(head == null){
+            return;
+        }
+        Node dummy1 = new Node(0);
+        Node dummy2 = new Node(0);
+        Node prev1 = dummy1;
+        Node prev2 = dummy2;
         Node current = head;
         while(current != null){
-            Node runner = current;
-            while(runner.next != null){
-                if(runner.next.value == current.value){
-                    runner.next =  runner.next.next;
-                    length -= 1;
-                }
-                else{
-                   runner = runner.next;
-                }
+            if(current.value < x){
+                prev1.next = current;
+                prev1 = current;
+            }else{
+                prev2.next = current;
+                prev2 = current;
             }
             current = current.next;
         }
+
+        prev2.next = null;
+        prev1.next = dummy2.next;
+        head = dummy1.next;
+
+
     }
 
 }
-
-

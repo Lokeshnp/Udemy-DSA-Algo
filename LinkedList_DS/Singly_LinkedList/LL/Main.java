@@ -1,3 +1,5 @@
+package LinkedList_DS.Singly_LinkedList.LL;
+
 public class Main {
     public static void main(String[] args) {
         LinkedList myLinkedList = new LinkedList(1);

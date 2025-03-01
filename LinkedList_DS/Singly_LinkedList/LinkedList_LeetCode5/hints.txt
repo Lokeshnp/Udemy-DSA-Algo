@@ -1,0 +1,43 @@
+Pseudo Code:
+
+1. Start with a variable called 'num' and set it to 0.
+
+   This will store our resulting decimal number.
+
+
+
+2. Create a pointer called 'current' and set it to point to the start of the linked list (the head).
+
+
+
+3. Begin a loop. Continue this loop as long as 'current' is not pointing to nothing (i.e., as long as we haven't reached the end of the list).
+
+
+
+   a. Inside the loop, the first step is to double the current value of 'num'.
+
+      This is like making space for the next binary digit.
+
+      Imagine we are reading a binary number from left to right.
+
+      Each time we move to the next position, we're shifting everything
+
+      to the left, which is equivalent to doubling in the binary system.
+
+
+
+   b. Add the value of the node that 'current' is pointing to, to 'num'.
+
+      This value will be either 0 or 1 since it's a binary digit.
+
+      Now 'num' contains the accumulated value up to the current binary digit.
+
+
+
+   c. Move the 'current' pointer to the next node in the list to continue
+
+      the loop for the next binary digit.
+
+
+
+4. Once the loop finishes (we've processed all binary digits), return the value of 'num' which now contains the decimal representation of the binary number in the linked list.

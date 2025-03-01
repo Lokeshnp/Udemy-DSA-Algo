@@ -1,9 +1,8 @@
-package LinkedList_LeetCode1;
+package LinkedList_DS.Singly_LinkedList.LinkedList_LeetCode6;
 
 public class LinkedList {
 
     private Node head;
-    private Node tail;
     private int length;
 
     class Node {
@@ -18,16 +17,11 @@ public class LinkedList {
     public LinkedList(int value) {
         Node newNode = new Node(value);
         head = newNode;
-        tail = newNode;
         length = 1;
     }
 
     public Node getHead() {
         return head;
-    }
-
-    public Node getTail() {
-        return tail;
     }
 
     public int getLength() {
@@ -45,10 +39,8 @@ public class LinkedList {
     public void printAll() {
         if (length == 0) {
             System.out.println("Head: null");
-            System.out.println("Tail: null");
         } else {
             System.out.println("Head: " + head.value);
-            System.out.println("Tail: " + tail.value);
         }
         System.out.println("Length:" + length);
         System.out.println("\nLinked List:");
@@ -61,7 +53,6 @@ public class LinkedList {
 
     public void makeEmpty() {
         head = null;
-        tail = null;
         length = 0;
     }
 
@@ -69,27 +60,33 @@ public class LinkedList {
         Node newNode = new Node(value);
         if (length == 0) {
             head = newNode;
-            tail = newNode;
         } else {
-            tail.next = newNode;
-            tail = newNode;
+            Node current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
         }
         length++;
     }
 
-    public boolean hasLoop(){
-        Node fast = head;
-        Node slow = head;
-
-        while(fast != null && fast.next != null){
-            slow = slow.next;
-            fast = fast.next.next;
-            if(slow == fast){
-                return true;
-            }
+    public void reverseBetween(int startIndex, int endIndex){
+        if(head == null){
+            return;
         }
-        return false;
+        Node dummyNode = new Node(0);
+        dummyNode.next = head;
+        Node previousNode = dummyNode;
+        for(int i=0;i<startIndex;i++){
+            previousNode = previousNode.next;
+        }
+        Node currentNode = previousNode.next;
+        for(int i=0;i<endIndex-startIndex;i++){
+            Node moveToNode = currentNode.next;
+            currentNode.next = moveToNode.next;
+            moveToNode.next = previousNode.next;
+            previousNode.next = moveToNode;
+        }
+        head = dummyNode.next;
     }
 }
-
-

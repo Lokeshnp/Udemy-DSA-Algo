@@ -1,14 +1,15 @@
-package LinkedList_LeetCode2;
+package LinkedList_DS.Singly_LinkedList.LinkedList_LeetCode;
 
 public class LinkedList {
 
     private Node head;
     private Node tail;
 
-    class Node{
+    class Node {
         int value;
         Node next;
-        Node(int value){
+
+        Node(int value) {
             this.value = value;
         }
     }
@@ -67,19 +68,17 @@ public class LinkedList {
         }
     }
 
-    public Node findKthFromEnd(int k){
-        Node fast = head;
+    public Node findMiddleNode(){
         Node slow = head;
-        for(int i=0;i<k;i++){
-            if(fast == null){
-                return null;
-            }
-            fast = fast.next;
-        }
-        while(fast != null){
+        Node fast = head;
+        while(fast != null && fast.next != null){
             slow = slow.next;
-            fast = fast.next;
+            fast = fast.next.next;
         }
         return slow;
+
     }
+
 }
+
+

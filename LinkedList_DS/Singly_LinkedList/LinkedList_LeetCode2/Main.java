@@ -1,4 +1,4 @@
-package LinkedList_LeetCode2;
+package LinkedList_DS.Singly_LinkedList.LinkedList_LeetCode2;
 
 public class Main {
 

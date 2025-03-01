@@ -1,3 +1,5 @@
+package LinkedList_DS.Singly_LinkedList.LL;
+
 public class LinkedList {
 
     private Node head;
