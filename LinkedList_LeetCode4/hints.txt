@@ -1,0 +1,29 @@
+Pseudo Code (for solution that uses a set):
+
+Create an empty HashSet called values to store the unique node values encountered in the linked list.
+
+Initialize two pointers: previous set to null, and current pointing to the head of the list.
+
+Start a while loop that continues until current is null: a. Check if values contains the value of the current node. i. If it does, update the next pointer of the previous node to skip the current node (i.e., previous.next = current.next), and decrement the list length by 1. b. If it does not, add the value of the current node to the values set and update the previous pointer to point to the current node. c. Move current one step ahead (i.e., current = current.next).
+
+When the while loop ends, all duplicate nodes will have been removed from the list.
+
+
+
+This algorithm uses a HashSet to keep track of unique values in the linked list and removes duplicates by updating the next pointers of the nodes as needed.
+
+
+
+
+
+Pseudo Code (for solution that does not use a set):
+
+Initialize a pointer current pointing to the head of the list.
+
+Start an outer while loop that continues until current is null: a. Initialize a pointer runner pointing to the current node. b. Start an inner while loop that continues until runner.next is null: i. Check if the value of the runner.next node is equal to the value of the current node. 1. If it is, update the next pointer of the runner node to skip the duplicate node (i.e., runner.next = runner.next.next), and decrement the list length by 1. ii. If it is not, move the runner pointer one step ahead (i.e., runner = runner.next). c. Move current one step ahead (i.e., current = current.next).
+
+When the outer while loop ends, all duplicate nodes will have been removed from the list.
+
+
+
+This algorithm uses two nested loops to traverse the linked list, removing duplicate nodes by updating the next pointers of the nodes as needed, without the use of any additional data structure like a HashSet.
