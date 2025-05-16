@@ -1,0 +1,74 @@
+Pseudocode Outline
+
+Create a dummy node that points to the head
+
+Use previous to track the node before the pair
+
+Use first to track the first node in the pair
+
+While there is a pair to swap:
+
+Let second = first.next
+
+Update pointers to swap the two nodes
+
+Move previous and first forward
+
+Reassign the head to dummy.next
+
+
+
+
+
+💡 Hints
+
+A dummy node is helpful when the head might change.
+
+Always update all next pointers in the correct order.
+
+Check both first and first.next in the loop condition.
+
+Don't forget to reconnect the swapped nodes to the rest of the list.
+
+
+
+
+
+📊 Step-by-Step Example (Visual Walkthrough)
+
+Input List: 1 -> 2 -> 3 -> 4
+
+Initialize:
+
+dummy → [0 → 1]
+
+previous = dummy
+
+first = 1
+
+Swap 1 and 2:
+
+previous.next → 2
+
+first.next → 3
+
+second.next → 1
+Result so far: 0 → 2 → 1 → 3 → 4
+
+Move pointers:
+
+previous = 1
+
+first = 3
+
+Swap 3 and 4:
+
+previous.next → 4
+
+first.next → null
+
+second.next → 3
+Final result: 0 → 2 → 1 → 4 → 3
+
+Set head equal to  dummy.next
+
