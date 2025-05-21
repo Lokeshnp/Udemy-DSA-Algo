@@ -1,0 +1,53 @@
+ public Integer dequeue() {
+        if (isEmpty()) {
+            return null;
+        } else {
+            return stack1.pop();
+        }
+    }
+
+
+
+
+This code implements the dequeue method for a custom queue class called MyQueue.
+
+The purpose of this method is to remove and return the front element of the queue while maintaining the First-In-First-Out (FIFO) order of the elements.
+
+The MyQueue class uses two stacks, stack1 and stack2, to achieve this behavior.
+
+The dequeue method assumes that the elements in stack1 are in the correct order, with the front of the queue at the top of stack1.
+
+Here's a step-by-step explanation of the code:
+
+
+
+if (isEmpty()) {: This condition checks if the queue is empty using the isEmpty() method. If the queue is empty, there are no elements to dequeue.
+
+return null;: If the queue is empty, the method returns null to indicate that there is no element to dequeue.
+
+} else {: If the queue is not empty, the method proceeds to remove and return the front element of the queue.
+
+return stack1.pop();: The top element of stack1 represents the front of the queue. The pop() method removes the top element from stack1 and returns it. This operation effectively dequeues the front element of the queue while maintaining the FIFO order of the remaining elements.
+
+
+
+After the execution of the dequeue method, the front element of the queue is removed and returned, and the order of the elements in stack1 still maintains the First-In-First-Out (FIFO) principle of the queue.
+
+
+
+
+
+Code with inline comments:
+
+
+
+public Integer dequeue() {
+    // Check if the queue is empty
+    if (isEmpty()) {
+        // Return null if the queue is empty
+        return null;
+    } else {
+        // Remove and return the front of the queue
+        return stack1.pop();
+    }
+}

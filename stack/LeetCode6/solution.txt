@@ -1,0 +1,55 @@
+public void enqueue(int value) {
+        while (!stack1.isEmpty()) {
+            stack2.push(stack1.pop());
+        }
+        stack1.push(value);
+        while (!stack2.isEmpty()) {
+            stack1.push(stack2.pop());
+        }
+    }
+
+
+
+
+This code implements the enqueue method for a custom queue class called MyQueue.
+
+The purpose of this method is to add an integer value to the queue while maintaining the First-In-First-Out (FIFO) order of the elements. The MyQueue class uses two stacks, stack1 and stack2, to achieve this behavior.
+
+Here's a step-by-step explanation of the code:
+
+
+
+while (!stack1.isEmpty()) {: This loop iterates until stack1 is empty. The purpose of this loop is to reverse the order of the elements temporarily by transferring them from stack1 to stack2.
+
+stack2.push(stack1.pop());: Inside the loop, the top element of stack1 is popped and pushed onto stack2. This operation is repeated for all the elements in stack1, effectively reversing their order in stack2.
+
+stack1.push(value);: After the first loop, stack1 is empty and the new value is pushed onto it. At this point, the new value is the only element in stack1.
+
+while (!stack2.isEmpty()) {: This loop iterates until stack2 is empty. The purpose of this loop is to restore the original order of the elements by transferring them back from stack2 to stack1.
+
+stack1.push(stack2.pop());: Inside the loop, the top element of stack2 is popped and pushed onto stack1. This operation is repeated for all the elements in stack2, effectively restoring their original order in stack1.
+
+
+
+After the execution of the enqueue method, the new value is added to the end of the queue, and the order of the elements in stack1 maintains the First-In-First-Out (FIFO) principle of the queue.
+
+
+
+
+
+Code with inline comments:
+
+
+
+public void enqueue(int value) {
+    // Transfer elements from stack1 to stack2
+    while (!stack1.isEmpty()) {
+        stack2.push(stack1.pop());
+    }
+    // Push the new value onto stack1
+    stack1.push(value);
+    // Transfer elements back from stack2 to stack1
+    while (!stack2.isEmpty()) {
+        stack1.push(stack2.pop());
+    }
+}

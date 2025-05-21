@@ -1,0 +1,52 @@
+public static String reverseString(String string) {
+        Stack<Character> stack = new Stack<>();
+        String reversedString = "";
+
+        for (char c : string.toCharArray()) {
+            stack.push(c);
+        }
+
+        while (!stack.isEmpty()) {
+            reversedString += stack.pop();
+        }
+
+        return reversedString;
+    }
+
+
+
+
+This code defines a method called reverseString which takes a single argument of type String and returns a String.  The method first creates an empty Stack object that will be used to reverse the string, and an empty String object that will hold the reversed string.
+
+Next, the method loops through each character in the input String and pushes each character onto the stack one at a time. Once all the characters have been pushed onto the stack, the method then pops each character off the stack one at a time, appending them to the reversedString variable.
+
+Finally, the method returns the reversedString, which is the original string in reverse order.
+
+
+
+
+
+Code with inline comments:
+
+
+
+public static String reverseString(String string) {
+    // Create a new stack of characters.
+    Stack<Character> stack = new Stack<>();
+    // Create an empty string for the reversed characters.
+    String reversedString = "";
+
+    // Loop through each character in the original string and push it onto the stack.
+    for (char c : string.toCharArray()) {
+        stack.push(c);
+    }
+
+    // Pop each character off the stack and add it to the reversed string.
+    // This will reverse the order of the characters in the original string.
+    while (!stack.isEmpty()) {
+        reversedString += stack.pop();
+    }
+
+    // Return the reversed string.
+    return reversedString;
+}
