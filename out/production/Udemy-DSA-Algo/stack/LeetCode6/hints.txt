@@ -1,0 +1,99 @@
+Pseudo Code:
+
+Initialize the function with an integer input value:
+
+Process the elements in stack1:
+
+While stack1 is not empty:
+
+Pop the top element from stack1 and push it to stack2.
+
+Add the new value to stack1:
+
+Push the input value (value) to stack1.
+
+Transfer elements back to stack1:
+
+While stack2 is not empty:
+
+Pop the top element from stack2 and push it to stack1.
+
+
+
+
+
+Step-by-Step Process
+
+Assume the queue has elements [1, 2, 3] (front is 1, back is 3), and we enqueue 4. Initially, stack1 has [1, 2, 3] (top is 1, bottom is 3).
+
+Move elements from stack1 to stack2:
+
+Pop each element from stack1 and push to stack2.
+
+Pop 1 → stack2: [1]
+
+Pop 2 → stack2: [2, 1]
+
+Pop 3 → stack2: [3, 2, 1]
+
+Now: stack1: [], stack2: [3, 2, 1] (top is 3).
+
+Push the new value to stack1:
+
+Push 4 to stack1.
+
+Now: stack1: [4], stack2: [3, 2, 1].
+
+Move elements back from stack2 to stack1:
+
+Pop each element from stack2 and push to stack1.
+
+Pop 3 → stack1: [3, 4]
+
+Pop 2 → stack1: [2, 3, 4]
+
+Pop 1 → stack1: [1, 2, 3, 4]
+
+Now: stack1: [1, 2, 3, 4] (top is 1, bottom is 4), stack2: [].
+
+The queue is now [1, 2, 3, 4] (front is 1, back is 4).
+
+
+
+🎨 Visual Representation:
+
+Diagram 1: Initial State
+
+Queue: [1, 2, 3] (front: 1, back: 3)
+stack1:        stack2:
+  1  <- top    (empty)
+  2
+  3
+
+
+Diagram 2: After Moving to stack2
+
+stack1:      stack2:
+ (empty)       3  <- top
+               2
+               1
+
+
+Diagram 3: After Pushing 4 to stack1
+
+stack1:      stack2:
+  4  <- top    3  <- top
+               2
+               1
+
+
+Diagram 4: After Moving Back to stack1
+
+Queue: [1, 2, 3, 4] (front: 1, back: 4)
+stack1:        stack2:
+  1  <- top    (empty)
+  2
+  3
+  4
+
+
