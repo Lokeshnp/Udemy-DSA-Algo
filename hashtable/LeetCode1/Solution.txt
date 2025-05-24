@@ -1,0 +1,50 @@
+public static boolean itemInCommon(int[] array1, int[] array2) {
+        HashMap<Integer, Boolean> myHashMap = new HashMap<>();
+
+        for (int i : array1) {
+            myHashMap.put(i, true);
+        }
+
+        for (int j : array2) {
+            if (myHashMap.get(j) != null) return true;
+        }
+
+        return false;
+    }
+
+
+
+
+The itemInCommon method takes two integer arrays (array1 and array2) as input parameters and returns a boolean value indicating whether there is at least one item in common between the two arrays.
+
+The method creates a new HashMap object named myHashMap, which will store the elements of array1. The for loop iterates over each element in array1, and for each element, it inserts a key-value pair into the HashMap. The key is the element itself, and the value is true.
+
+Next, the method iterates over each element in array2, and for each element, it checks if the element is in myHashMap by calling the get method of the HashMap and passing in the element as a parameter. If the method returns a non-null value, then the element is in myHashMap and the method immediately returns true. Otherwise, the loop continues to the next element.
+
+If the loop completes without finding any elements in common between array1 and array2, then the method returns false.
+
+
+
+
+
+Code with inline comments:
+
+
+
+public static boolean itemInCommon(int[] array1, int[] array2) {
+    // Create a HashMap to store the elements of array1
+    HashMap<Integer, Boolean> myHashMap = new HashMap<>();
+
+    // Add each element of array1 to the HashMap with a true value
+    for (int i : array1) {
+        myHashMap.put(i, true);
+    }
+
+    // Check if each element of array2 is in the HashMap
+    for (int j : array2) {
+        if (myHashMap.get(j) != null) return true;
+    }
+
+    // If no elements in common, return false
+    return false;
+}
