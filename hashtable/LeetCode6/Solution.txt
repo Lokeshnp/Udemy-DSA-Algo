@@ -1,0 +1,73 @@
+public static int[] subarraySum(int[] nums, int target) {
+        Map<Integer, Integer> sumIndex = new HashMap<>();
+        sumIndex.put(0, -1);
+        int currentSum = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            currentSum += nums[i];
+            if (sumIndex.containsKey(currentSum - target)) {
+                return new int[]{sumIndex.get(currentSum - target) + 1, i};
+            }
+            sumIndex.put(currentSum, i);
+        }
+
+        return new int[]{};
+    }
+
+
+
+
+This code defines a method called subarraySum that takes two inputs: an integer array nums and an integer target. The goal of the method is to find a contiguous subarray within the input array nums that adds up to the target value. The method returns an array of two integers, representing the start and end indices of the subarray in the input array. If no such subarray is found, an empty array is returned.
+
+Here's a step-by-step explanation of the code:
+
+
+
+A HashMap sumIndex is created to store the cumulative sum of the elements in the array as keys and their corresponding indices as values.
+
+The initial key-value pair (0, -1) is added to the HashMap, representing the cumulative sum before the first element of the array.
+
+A variable currentSum is initialized to 0 to store the cumulative sum of the elements as we iterate through the array.
+
+A for loop iterates through the array nums with index i.
+
+Inside the loop, currentSum is incremented by the current element, nums[i].
+
+If the HashMap sumIndex contains the key currentSum - target, it means that there is a subarray whose sum is equal to the target value. In this case, we return an array containing the start index (the value associated with the key currentSum - target in the HashMap incremented by 1) and the end index i.
+
+If the HashMap does not contain the key currentSum - target, we add the key-value pair (currentSum, i) to the HashMap and continue to the next iteration.
+
+If the loop completes without finding a subarray with the target sum, an empty array is returned.
+
+
+
+
+
+Code with inline comments:
+
+
+
+public static int[] subarraySum(int[] nums, int target) {
+    // Create a HashMap to store cumulative sum and index
+    Map<Integer, Integer> sumIndex = new HashMap<>();
+    // Initialize the HashMap with 0 sum and index -1
+    sumIndex.put(0, -1);
+    // Initialize the current sum to 0
+    int currentSum = 0;
+
+    // Iterate through the input array
+    for (int i = 0; i < nums.length; i++) {
+        // Calculate the cumulative sum
+        currentSum += nums[i];
+        // Check if the required subarray sum exists
+        if (sumIndex.containsKey(currentSum - target)) {
+            // Return the start and end indices of the subarray
+            return new int[]{sumIndex.get(currentSum - target) + 1, i};
+        }
+        // Store the current sum and its index in the HashMap
+        sumIndex.put(currentSum, i);
+    }
+
+    // Return an empty array if no subarray is found
+    return new int[]{};
+}

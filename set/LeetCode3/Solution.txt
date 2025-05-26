@@ -1,0 +1,74 @@
+public static List<int[]> findPairs(int[] arr1, int[] arr2, int target) {
+        Set<Integer> mySet = new HashSet<>();
+        List<int[]> pairs = new ArrayList<>();
+
+        for (int num : arr1) {
+            mySet.add(num);
+        }
+
+        for (int num : arr2) {
+            int complement = target - num;
+            if (mySet.contains(complement)) {
+                pairs.add(new int[]{complement, num});
+            }
+        }
+
+        return pairs;
+    }
+
+
+
+
+This code defines a method called findPairs that takes two integer arrays arr1 and arr2, and an integer target as input arguments.
+
+The purpose of this method is to find all pairs of integers such that one integer is from arr1, the other is from arr2, and their sum equals the target value.
+
+The method returns a list of integer arrays, each containing a pair of integers that meet the specified conditions.
+
+
+
+A HashSet called mySet is created to store the unique elements of arr1. A HashSet is used because it allows for efficient O(1) lookups.
+
+A List called pairs is created to store the resulting pairs of integers that meet the specified conditions.
+
+The first for-each loop iterates through each element num in arr1 and adds it to mySet.
+
+The second for-each loop iterates through each element num in arr2. For each element, the complement value is calculated as target - num.
+
+An if statement checks whether mySet contains the complement value. If it does, it means there is a pair of integers from arr1 and arr2 that sum up to the target value. In this case, a new integer array is created containing the complement value and the current num value, and this array is added to the pairs list.
+
+After processing all elements in arr2, the pairs list is returned, containing all pairs of integers from arr1 and arr2 that sum up to the target value.
+
+
+
+
+
+Code with inline comments:
+
+
+
+public static List<int[]> findPairs(int[] arr1, int[] arr2, int target) {
+    // Create a set to store unique elements from arr1
+    Set<Integer> mySet = new HashSet<>();
+    // Create a list to store pairs meeting the conditions
+    List<int[]> pairs = new ArrayList<>();
+
+    // Iterate over arr1 and add elements to mySet
+    for (int num : arr1) {
+        mySet.add(num);
+    }
+
+    // Iterate over arr2 and check for pairs with target sum
+    for (int num : arr2) {
+        // Calculate the complement to reach the target
+        int complement = target - num;
+        // Check if the complement is in mySet (arr1)
+        if (mySet.contains(complement)) {
+            // Add the pair (complement, num) to pairs list
+            pairs.add(new int[]{complement, num});
+        }
+    }
+
+    // Return the list of pairs meeting the conditions
+    return pairs;
+}

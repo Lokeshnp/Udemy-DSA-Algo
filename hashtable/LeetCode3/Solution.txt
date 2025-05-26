@@ -1,0 +1,68 @@
+public static Character firstNonRepeatingChar(String string) {
+        Map<Character, Integer> charCounts = new HashMap<>();
+
+        for (int i = 0; i < string.length(); i++) {
+            char c = string.charAt(i);
+            charCounts.put(c, charCounts.getOrDefault(c, 0) + 1);
+        }
+
+        for (int i = 0; i < string.length(); i++) {
+            char c = string.charAt(i);
+            if (charCounts.get(c) == 1) {
+                return c;
+            }
+        }
+
+        return null;
+    }
+
+
+
+
+The firstNonRepeatingChar method takes a string as input and returns the first non-repeating character in the string. The method uses a HashMap to count the frequency of each character in the string. The steps of the code are as follows:
+
+
+
+Create a HashMap to store the frequency of each character in the string.
+
+Iterate over the characters in the string and increment the count for each character in the HashMap.
+
+Iterate over the characters in the string again and return the first character that has a count of 1 in the HashMap.
+
+If no character is found with a count of 1, return null.
+
+
+
+The first loop counts the frequency of each character by using a HashMap. For each character, the code checks if it already exists in the HashMap, and if it does, it increments its count. If it doesn't exist, it initializes its count to 1.
+
+The second loop iterates over the characters in the string again and checks the count of each character in the HashMap. If a character has a count of 1, it is returned as the first non-repeating character. If no character is found with a count of 1, null is returned.
+
+
+
+
+
+Code with inline comments:
+
+
+
+public static Character firstNonRepeatingChar(String string) {
+    // Create a map to store the frequency of each character
+    Map<Character, Integer> charCounts = new HashMap<>();
+
+    // Count the frequency of each character in the string
+    for (int i = 0; i < string.length(); i++) {
+        char c = string.charAt(i);
+        charCounts.put(c, charCounts.getOrDefault(c, 0) + 1);
+    }
+
+    // Iterate over the characters again to find the
+    // first non-repeating character
+    for (int i = 0; i < string.length(); i++) {
+        char c = string.charAt(i);
+        if (charCounts.get(c) == 1) {
+            return c;
+        }
+    }
+
+    return null;
+}

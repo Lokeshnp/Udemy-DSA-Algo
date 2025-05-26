@@ -1,0 +1,83 @@
+public static List<List<String>> groupAnagrams(String[] strings) {
+        Map<String, List<String>> anagramGroups = new HashMap<>();
+
+        for (String string : strings) {
+            char[] chars = string.toCharArray();
+            Arrays.sort(chars);
+            String canonical = new String(chars);
+
+            if (anagramGroups.containsKey(canonical)) {
+                anagramGroups.get(canonical).add(string);
+            } else {
+                List<String> group = new ArrayList<>();
+                group.add(string);
+                anagramGroups.put(canonical, group);
+            }
+        }
+
+        return new ArrayList<>(anagramGroups.values());
+    }
+
+
+
+
+This code defines a method called groupAnagrams that takes an array of strings as input and groups anagrams together. The method returns a list of lists, where each inner list contains the strings that are anagrams of each other. Here's a step-by-step explanation of the code:
+
+
+
+A new HashMap called anagramGroups is created to store the anagram groups. The key is a sorted string (the canonical form of the anagram), and the value is a list of strings that are anagrams of the key.
+
+The code iterates over each string in the input strings array using a for-each loop.
+
+The characters in the string are converted into an array of characters called chars.
+
+The chars array is sorted using Arrays.sort(chars). Sorting the characters of all anagrams will result in the same sequence of characters (the canonical form).
+
+A new String called canonical is created from the sorted chars array. This canonical string is used as the key in the anagramGroups map.
+
+The code checks if anagramGroups already contains the canonical key using the containsKey method.
+
+a. If the key is present in the map, the code gets the list of strings associated with the canonical key using the get method and adds the current string to this list.
+
+b. If the key is not present in the map, a new ArrayList called group is created. The current string is added to this list, and then the canonical key and the group list are added to the anagramGroups map.
+
+Once all the strings in the input array have been processed, the values() method is called on the anagramGroups map to get a collection of all the lists of anagrams. This collection is then used to create a new ArrayList, which is returned as the final result.
+
+
+
+
+
+Code with inline comments:
+
+
+
+public static List<List<String>> groupAnagrams(String[] strings) {
+    // Create a map to store anagram groups
+    Map<String, List<String>> anagramGroups = new HashMap<>();
+
+    // Iterate over each string in the input array
+    for (String string : strings) {
+        // Convert the string to a char array
+        char[] chars = string.toCharArray();
+        // Sort the char array
+        Arrays.sort(chars);
+        // Create a canonical string from sorted chars
+        String canonical = new String(chars);
+
+        // Check if the map contains the canonical key
+        if (anagramGroups.containsKey(canonical)) {
+            // Add the string to the existing group
+            anagramGroups.get(canonical).add(string);
+        } else {
+            // Create a new group for the string
+            List<String> group = new ArrayList<>();
+            group.add(string);
+            // Add the new group to the map
+            anagramGroups.put(canonical, group);
+        }
+    }
+
+    // Return the groups as a new ArrayList
+    return new ArrayList<>(anagramGroups.values());
+}
+

@@ -1,0 +1,37 @@
+public static List<Integer> removeDuplicates(List<Integer> myList) {
+        Set<Integer> uniqueSet = new HashSet<>(myList);
+        return new ArrayList<>(uniqueSet);
+    }
+
+
+
+
+This code defines a method called removeDuplicates that takes a List<Integer> as its argument and returns a new List<Integer> with duplicates removed. Here's an explanation of how the code works:
+
+
+
+public static List<Integer> removeDuplicates(List<Integer> myList) - This line declares the method signature. The method is public and static, meaning it can be called without creating an instance of the class it belongs to. It takes a List<Integer> called myList as its argument and returns a List<Integer>.
+
+Set<Integer> uniqueSet = new HashSet<>(myList); - Inside the method, a new HashSet<Integer> called uniqueSet is created. The constructor of HashSet takes the myList as its argument, and by doing so, it adds all the elements from myList to the uniqueSet. Since a Set can only have unique elements, any duplicate elements in myList are automatically removed when added to the uniqueSet.
+
+return new ArrayList<>(uniqueSet); - Finally, the method returns a new ArrayList<Integer> created from the uniqueSet. This line converts the Set<Integer> back to a List<Integer> while maintaining the unique elements. Keep in mind that the order of elements in the returned list might be different from the original list, as sets are unordered.
+
+
+
+In summary, the removeDuplicates method takes a list of integers, removes duplicate elements from it by converting the list into a set, and returns a new list containing the unique elements.
+
+
+
+
+
+Code with inline comments:
+
+
+
+public static List<Integer> removeDuplicates(List<Integer> myList) {
+    // Create a new HashSet with unique elements from myList
+    Set<Integer> uniqueSet = new HashSet<>(myList);
+
+    // Return a new ArrayList created from the uniqueSet
+    return new ArrayList<>(uniqueSet);
+}

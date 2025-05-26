@@ -1,0 +1,70 @@
+public static int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> numMap = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+            int complement = target - num;
+
+            if (numMap.containsKey(complement)) {
+                return new int[]{numMap.get(complement), i};
+            }
+            numMap.put(num, i);
+        }
+
+        return new int[]{};
+    }
+
+
+
+
+This code defines a method called twoSum that takes an array of integers (nums) and a target integer (target) as input. The goal is to find two numbers in the array that add up to the target value. The method returns an array of two integers, representing the indices of the two numbers in the input array that add up to the target. If no such pair is found, an empty array is returned. Here's a step-by-step explanation of the code:
+
+
+
+A new HashMap called numMap is created to store the numbers in the input array as keys and their corresponding indices as values.
+
+The code iterates over the nums array using a for loop with an index variable i.
+
+The current number num in the array is retrieved using nums[i].
+
+The complement of the current number is calculated as target - num. The complement is the value that needs to be added to the current number to get the target value.
+
+The code checks if numMap contains the complement as a key using the containsKey method.
+
+a. If the complement is present in the map, it means we have found a pair of numbers that add up to the target value. In this case, the method returns an array containing the index of the complement (retrieved using numMap.get(complement)) and the current index i.
+
+If the complement is not found in the map, the current number num is added to the map as a key with its index i as the value.
+
+If the loop finishes without finding a pair that adds up to the target value, an empty array is returned, indicating that no such pair exists in the input array.
+
+
+
+
+
+Code with inline comments:
+
+
+
+public static int[] twoSum(int[] nums, int target) {
+    // Create a map to store numbers and their indices
+    Map<Integer, Integer> numMap = new HashMap<>();
+
+    // Iterate over each number in the input array
+    for (int i = 0; i < nums.length; i++) {
+        // Get the current number
+        int num = nums[i];
+        // Calculate the complement needed to reach the target
+        int complement = target - num;
+
+        // Check if the map contains the complement
+        if (numMap.containsKey(complement)) {
+            // Return the indices of the complement and current number
+            return new int[]{numMap.get(complement), i};
+        }
+        // Store the current number and its index in the map
+        numMap.put(num, i);
+    }
+
+    // Return an empty array if no pair was found
+    return new int[]{};
+}
