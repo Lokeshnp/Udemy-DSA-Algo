@@ -1,0 +1,64 @@
+public static List<Integer> streamMax(int[] nums) {
+        Heap maxHeap = new Heap();
+        List<Integer> maxStream = new ArrayList<>();
+
+        for (int num : nums) {
+            maxHeap.insert(num);
+            // The heap's root is always the maximum, so we add it to the result list
+            maxStream.add(maxHeap.getHeap().get(0));
+        }
+
+        return maxStream;
+    }
+
+
+
+
+The method streamMax is defined as a public and static method, which means it can be accessed and called directly from the class without needing to instantiate an object of the class. It accepts an array of integers (nums) as an argument and returns a list of integers.
+
+Inside the method, a new Heap object is created and assigned to the variable maxHeap. This Heap object is a max-heap data structure, where the largest element is always at the root of the heap.
+
+A new, empty ArrayList of integers is created and assigned to the variable maxStream. This list will be used to store the maximum number encountered so far in the array at each step of iteration.
+
+The method then enters a for loop which iterates over each integer (num) in the input array (nums).
+
+On each iteration, the current integer (num) is inserted into the maxHeap by calling maxHeap.insert(num). The insert operation ensures that the max-heap property is maintained, i.e., the maximum element of the heap (or array so far) is always at the root.
+
+After the insertion, the method adds the current maximum element to the maxStream list. This is done by calling maxHeap.getHeap().get(0), which retrieves the root of the heap (i.e., the current maximum).
+
+After all the integers in nums have been processed, the method returns the maxStream list. This list contains the maximum elements encountered so far in the stream at each step.
+
+
+
+In summary, the streamMax method generates and returns a list that represents the running maximum of a stream of numbers. For each number in the input array, it gives the maximum number encountered so far.
+
+
+
+
+
+Code with inline comments:
+
+
+
+public static List<Integer> streamMax(int[] nums) {
+    // Create an instance of a max-heap
+    Heap maxHeap = new Heap();
+
+    // Prepare a list to store the max of the stream so far
+    List<Integer> maxStream = new ArrayList<>();
+
+    // For each number in the given array
+    for (int num : nums) {
+        // Insert the current number into the max-heap
+        maxHeap.insert(num);
+
+        // After insertion, the max of the heap (which is also
+        // the max of the stream so far) is at the root. Add this
+        // root to the maxStream list
+        maxStream.add(maxHeap.getHeap().get(0));
+    }
+
+    // After iterating over all the numbers, return the maxStream list
+    // that contains the running maximum of the input stream
+    return maxStream;
+}

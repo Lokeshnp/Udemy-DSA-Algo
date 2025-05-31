@@ -1,0 +1,71 @@
+public static int findKthSmallest(int[] nums, int k) {
+        Heap maxHeap = new Heap();
+
+        for (int num : nums) {
+            maxHeap.insert(num);
+            if (maxHeap.getHeap().size() > k) {
+                maxHeap.remove();
+            }
+        }
+
+        return maxHeap.remove();
+    }
+
+
+
+
+The findKthSmallest function takes two inputs, an array of integers nums, and an integer k. The goal of this function is to return the kth smallest number in the nums array. The function achieves this by using a max heap data structure.
+
+Here's how it works:
+
+Heap maxHeap = new Heap(); - This line creates an instance of a Heap. In the context of this function, this heap is going to be used as a max heap, which is a complete binary tree where each parent node is greater than or equal to its child nodes.
+
+for (int num : nums) {...} - This line starts a for-each loop that iterates through each integer num in the input array nums.
+
+maxHeap.insert(num); - This line inserts the current integer num into the max heap. The insert method of the Heap class ensures that the heap property is maintained after insertion, meaning that each parent node is still greater than or equal to its child nodes.
+
+if (maxHeap.getHeap().size() > k) {...} - This line checks if the number of elements in the max heap is greater than k. This is an essential step because we only want to keep the smallest k elements in the heap.
+
+maxHeap.remove(); - If the size of the heap is greater than k, this line removes the maximum element from the heap. In a max heap, the maximum element is always at the root of the heap. The remove method also ensures that the heap property is maintained after the removal.
+
+After the loop has finished executing, all the smallest k numbers from the array are in the heap. The root of the heap is the kth smallest number because there are k-1 numbers that are smaller in the heap.
+
+return maxHeap.remove(); - This line removes and returns the maximum element from the max heap, which is the kth smallest number in the original array.
+
+
+
+This implementation is efficient because it avoids sorting the entire array or maintaining a full-size heap. It instead keeps a max heap of size k, which contains the smallest k numbers seen so far. This makes it easy to find the kth smallest number in constant time once the heap is built.
+
+
+
+
+
+Code with inline comments:
+
+
+
+public static int findKthSmallest(int[] nums, int k) {
+    // Initialize a new Heap instance.
+    Heap maxHeap = new Heap();
+
+    // Iterate over every number in the input array.
+    for (int num : nums) {
+        // Insert current number into the heap.
+        // Heap property is maintained after each insertion.
+        maxHeap.insert(num);
+
+        // Check if heap size exceeds 'k'.
+        if (maxHeap.getHeap().size() > k) {
+            // If size exceeds 'k', remove the largest number.
+            // Heap property is maintained after each removal.
+            maxHeap.remove();
+        }
+    }
+
+    // At this point, the heap contains the smallest 'k' numbers.
+    // The largest number in the heap is the kth smallest number in the array.
+    // Therefore, we remove and return it.
+    return maxHeap.remove();
+}
+
+
