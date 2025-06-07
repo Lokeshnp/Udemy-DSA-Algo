@@ -1,0 +1,80 @@
+ public boolean isValidBST() {
+        ArrayList<Integer> nodeValues = DFSInOrder();
+        for (int i = 1; i < nodeValues.size(); i++) {
+            if (nodeValues.get(i) <= nodeValues.get(i - 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
+
+The purpose of this method is to validate whether the tree is a correctly implemented binary search tree according to the BST property: for every node in the tree, all values in the left subtree must be less than the node's value, and all values in the right subtree must be greater than the node's value.
+
+Here's a breakdown of how this method works:
+
+
+
+In-Order Traversal:
+
+The method begins by performing an in-order traversal of the tree, storing the result in an ArrayList<Integer> named nodeValues.
+
+In an in-order traversal, the tree is traversed in a left-node-right order, meaning it first visits all nodes in a subtree's left branch, then the root node of the subtree, and finally all nodes in the right branch.
+
+For a correctly implemented BST, this traversal results in a list of node values in ascending order because of the BST property.
+
+Validation:
+
+The method then iterates through the list of node values starting from the second value (index 1) because it compares each element with its predecessor to check for ascending order.
+
+It checks if the current value is less than or equal to the previous value in the list. If such a case is found, it means the tree does not follow the BST property at some point, so the method returns false indicating the tree is not a valid BST.
+
+This comparison is crucial because the BST property ensures that, if correctly implemented, no value to the right (in the traversal list) should be less than or equal to any value to the left.
+
+Conclusion:
+
+If the loop completes without finding any violations of the ascending order, the method concludes that the tree satisfies the BST property and returns true, indicating the tree is a valid binary search tree.
+
+The method effectively uses the result of the in-order traversal to validate the BST. This approach is efficient because it leverages the sorted nature of the in-order traversal of a BST to check for validity with a single pass through the list of node values.
+
+
+
+In summary, the isValidBST method verifies the integrity of a binary search tree by ensuring that an in-order traversal of the tree yields values in strictly ascending order, which is a direct consequence of the BST property.
+
+
+
+
+
+Code with inline comments:
+
+
+
+public boolean isValidBST() {
+    // Perform an in-order traversal of the tree. This should
+    // result in a list of node values in ascending order if
+    // the tree is a valid binary search tree (BST).
+    ArrayList<Integer> nodeValues = DFSInOrder();
+
+    // Start from the second element (index 1) and compare each
+    // element with its predecessor to ensure the list is in
+    // strictly ascending order. The in-order traversal of a BST
+    // should produce a sorted list of values where each value
+    // is greater than the previous one.
+    for (int i = 1; i < nodeValues.size(); i++) {
+        // If the current value is less than or equal to the previous
+        // value, it means the list is not in ascending order. Thus,
+        // the tree is not a valid BST. Return false in this case.
+        if (nodeValues.get(i) <= nodeValues.get(i - 1)) {
+            return false; // Not in ascending order
+        }
+    }
+
+    // If the loop completes without finding any out-of-order elements,
+    // it means the in-order traversal resulted in a sorted list, and
+    // therefore, the tree is a valid BST. Return true in this case.
+    return true;
+}
+
+

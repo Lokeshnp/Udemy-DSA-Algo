@@ -1,0 +1,94 @@
+private Node sortedArrayToBST(int[] nums, int left, int right) {
+        if (left > right) return null;
+        int mid = left + (right - left) / 2;
+        Node node = new Node(nums[mid]);
+        node.left = sortedArrayToBST(nums, left, mid - 1);
+        node.right = sortedArrayToBST(nums, mid + 1, right);
+        return node;
+    }
+
+
+
+
+The method uses a recursive divide-and-conquer strategy to ensure that the resulting tree is height-balanced, which means the difference in heights of the left and right subtrees for any node is not more than one.
+
+Here's a step-by-step explanation of how the method works:
+
+
+
+Base Case Check: if (left > right) return null;
+
+This line checks if the current segment of the array to be processed is valid. If left (the start index) is greater than right (the end index), it means there are no elements to process in this segment, so it returns null. This serves as the base case for the recursion, indicating that the tree or subtree corresponding to this segment of the array should not have a node at this level.
+
+Finding the Middle Element: int mid = left + (right - left) / 2;
+
+This line calculates the middle index of the current array segment. The middle element is chosen as the root of the current subtree to ensure the resulting BST is balanced. The calculation left + (right - left) / 2 is used to prevent potential overflow that could happen with (left + right) / 2 if left and right are large enough.
+
+Creating a New Node: Node node = new Node(nums[mid]);
+
+This line creates a new node with the value of the middle element of the current array segment. This node will serve as the root of the subtree for the current segment of the array.
+
+Building the Left Subtree: node.left = sortedArrayToBST(nums, left, mid - 1);
+
+This line recursively calls sortedArrayToBST for the left half of the current array segment (from left to mid - 1). The return value (a node or null) is assigned to the left child of the current node. This step builds the left subtree, ensuring elements less than the root are placed on the left side, maintaining the BST property.
+
+Building the Right Subtree: node.right = sortedArrayToBST(nums, mid + 1, right);
+
+Similarly, this line handles the right half of the current array segment (from mid + 1 to right) through a recursive call. The return value is assigned to the right child of the current node, constructing the right subtree. This ensures that elements greater than the root are placed on the right side.
+
+Returning the Node: return node;
+
+Finally, after the left and right subtrees have been recursively constructed, the current node (now the root of a subtree that correctly represents a segment of the input array) is returned. This node is either directly the root of the entire tree (if this is the initial call) or becomes a child node of another node in the recursive process.
+
+
+
+Through this recursive process, the method constructs a balanced BST from a sorted array, with each recursive call handling a smaller segment of the array until the entire array is processed. This ensures the depth of the tree is minimized, allowing for efficient search, insertion, and deletion operations.
+
+
+
+
+
+Code with inline comments:
+
+
+
+private Node sortedArrayToBST(int[] nums, int left, int right) {
+    // Base case: if the left index exceeds the right,
+    // it means the sub-array is empty. Return null
+    // to indicate no node should be created at this level.
+    if (left > right) return null;
+
+    // Find the middle element of the current sub-array.
+    // This element will be the root of the subtree formed
+    // by this sub-array. This choice ensures the resulting
+    // BST is balanced. The middle element is chosen by
+    // calculating the average of the left and right indices,
+    // adjusting for integer division. This also ensures that
+    // in cases where the sub-array has an even number of elements,
+    // the left subtree will not have fewer nodes than the right subtree.
+    int mid = left + (right - left) / 2;
+
+    // Create a new node with the value of the middle element.
+    // This node will be the root of the subtree for the current
+    // recursive call.
+    Node node = new Node(nums[mid]);
+
+    // Recursively build the left subtree by using the portion
+    // of the array that's to the left of the middle element.
+    // The current middle element's index is adjusted by one to the left
+    // to exclude it from the left sub-array. This recursive call
+    // will continue until the base case is reached for the left side.
+    node.left = sortedArrayToBST(nums, left, mid - 1);
+
+    // Similarly, recursively build the right subtree by using
+    // the portion of the array that's to the right of the middle element.
+    // The current middle element's index is adjusted by one to the right
+    // to exclude it from the right sub-array. This recursive call
+    // will continue until the base case is reached for the right side.
+    node.right = sortedArrayToBST(nums, mid + 1, right);
+
+    // Return the node. At the end of recursion, this node will be
+    // the root of a balanced binary search tree constructed from
+    // the input array.
+    return node;
+}

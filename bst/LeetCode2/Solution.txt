@@ -1,0 +1,110 @@
+private Node invertTree(Node node) {
+        if (node == null) return null;
+
+        Node temp = node.left;
+        node.left = invertTree(node.right);
+        node.right = invertTree(temp);
+
+        return node;
+    }
+
+
+
+
+The provided code inverts a binary tree.  The inversion process means that for every node in the tree, its left and right children are swapped. The method does this recursively for every node in the tree, effectively mirroring the tree's structure.
+
+Here's a step-by-step explanation of how it works:
+
+
+
+Base Case - Node is Null:
+
+The method first checks if the current node is null.
+
+If it is, the method returns null. This check serves as the base case for the recursion, ensuring that the recursion stops when it reaches the end of a branch (i.e., leaf nodes' children, which are null).
+
+Swapping Children:
+
+The method stores the current node's left child in a temporary variable temp. This is necessary because the inversion process will overwrite this reference.
+
+It then sets the current node's left child to be the result of inverting the current node's right child. This is done by calling invertTree on the node's right child and assigning the result to the node's left child.
+
+This step begins the process of swapping the left and right children but starts the inversion of the right subtree first.
+
+Next, the method sets the current node's right child to be the result of inverting the original left child, which was saved in temp.
+
+This completes the swap and inverts the left subtree.
+
+Recursive Inversion:
+
+The inversion of the right and left subtrees (node.right and node.left, respectively) is performed recursively. This means that for each child node, the invertTree method is called, causing their children to be swapped in the same manner.
+
+This recursion continues down the tree, swapping the children of all nodes, until the base case is reached (i.e., a null child node).
+
+Returning the Node:
+
+After inverting the subtrees rooted at the current node's left and right children, the method returns the current node.
+
+This return is important because it allows the parent node (the caller of the current invocation of invertTree) to maintain the correct reference to the inverted subtree. For the root node of the tree, this means the top-level call to invertTree will return the root of the newly inverted tree.
+
+
+
+In summary, the invertTree method systematically traverses the entire binary tree, swapping the left and right children of every node. It utilizes a post-order traversal approach (since it deals with the children before dealing with the node itself) and applies the inversion recursively. The effect of this operation is that the tree is mirrored along its central vertical axis, turning the tree into its mirror image.
+
+
+
+
+
+Code with inline comments:
+
+
+
+private Node invertTree(Node node) {
+    // Check if the current node is null. This condition is crucial because it
+    // serves as the termination condition for the recursion. When the method
+    // encounters a null, it means it has reached beyond the leaf nodes of the
+    // tree (i.e., it's at a position where a leaf node would have a child if
+    // leaf nodes could have children). Since there's nothing to invert at this
+    // point, the method simply returns null without making any changes.
+    if (node == null) return null;
+
+    // Temporarily store the current node's left child in a variable named 'temp'.
+    // This step is necessary because the inversion process will overwrite the
+    // 'left' pointer of the current node with the value of its 'right' pointer.
+    // Storing the original left child allows us to access it later when we need
+    // to set the current node's right child. Without this temporary storage, the
+    // original left child would be lost after setting the current node's left child
+    // to the inverted right subtree.
+    Node temp = node.left;
+
+    // Recursively invert the right subtree. The method calls itself with the
+    // current node's right child as the argument. This recursive call will
+    // continue down the right subtree, inverting each node's children along the
+    // way. Once the inversion of the right subtree is complete, the method
+    // sets the current node's left child to the result. This effectively moves
+    // the entire right subtree to the left side of the current node. The
+    // recursion ensures that every node in the right subtree is processed
+    // and inverted in a bottom-up manner, starting from the rightmost leaf nodes.
+    node.left = invertTree(node.right);
+
+    // Recursively invert the original left subtree, which is now stored in 'temp'.
+    // This step is similar to the previous one but operates on the original left
+    // subtree of the current node. By calling 'invertTree' with 'temp' (the
+    // original left child) as the argument, the method inverts the left subtree
+    // and sets the result as the current node's right child. This moves the entire
+    // left subtree, now inverted, to the right side of the current node. As with
+    // the right subtree, the inversion is performed recursively in a bottom-up
+    // fashion, ensuring that the structure of the subtree is correctly mirrored.
+    node.right = invertTree(temp);
+
+    // Return the current node. By this point in the method, the current node's
+    // left and right children have been swapped, and the subtrees rooted at
+    // those children have been inverted. Returning the current node allows the
+    // parent call (one level up in the recursion stack) to receive the inverted
+    // subtree and continue the inversion process up the tree. This step is
+    // repeated until the recursion unwinds back to the root of the tree,
+    // at which point the entire tree has been inverted.
+    return node;
+}
+
+
