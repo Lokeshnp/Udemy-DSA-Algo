@@ -1,0 +1,97 @@
+void bubbleSort() {
+        if (this.length < 2)
+            return;
+
+        Node sortedUntil = null;
+        while (sortedUntil != this.head.next) {
+            Node current = this.head;
+            while (current.next != sortedUntil) {
+                Node nextNode = current.next;
+                if (current.value > nextNode.value) {
+                    int temp = current.value;
+                    current.value = nextNode.value;
+                    nextNode.value = temp;
+                }
+                current = current.next;
+            }
+            sortedUntil = current;
+        }
+    }
+
+
+
+
+This code is implementing a Bubble Sort algorithm to sort a linked list.
+
+Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order.
+
+Here's the detailed explanation of the code:
+
+if (this.length < 2) return;: This statement is checking if the linked list has less than 2 nodes. If true, there is no need for sorting because a list of length 0 or 1 is already sorted.
+
+Node sortedUntil = null;: This line creates a node sortedUntil and sets it to null. This node represents a marker up to which the list is known to be sorted.
+
+while (sortedUntil != this.head.next) { ... }: This outer while loop runs until sortedUntil is not equal to the second node in the list. This loop ensures that the sorting process continues until the entire list is sorted.
+
+Inside this loop, Node current = this.head; initializes current to be the first node of the list. This node is used to traverse the list and represents the current node being inspected.
+
+The inner loop while (current.next != sortedUntil) { ... } iterates over the list starting from the head up to the node before sortedUntil. This is the part of the list that we're bubbling elements through in the current iteration.
+
+Inside this inner loop, Node nextNode = current.next; sets nextNode to be the node after current.
+
+The if (current.value > nextNode.value) condition checks if the value of the current node is greater than the value of the nextNode. If true, the nodes are in the wrong order and need to be swapped.
+
+If the nodes need to be swapped, int temp = current.value; current.value = nextNode.value; nextNode.value = temp; swaps the values of current and nextNode using a temporary variable temp.
+
+current = current.next; advances current to the next node in the list.
+
+After the inner loop, sortedUntil = current; updates sortedUntil to be current. This indicates that all elements up to and including current are now sorted.
+
+
+
+The Bubble Sort algorithm works by repeatedly swapping adjacent elements if they are in the wrong order. The process continues until no more swaps are needed, which indicates that the list is sorted. This method in particular starts the sorting from the beginning of the list each time, bubbling the largest unsorted element to its correct place, until the entire list is sorted.
+
+
+
+
+
+Code with inline comments:
+
+
+
+void bubbleSort() {
+    // If list length is less than 2, no need to sort
+    if (this.length < 2)
+        return;
+
+    // Initialize sortedUntil as null (nothing is sorted initially)
+    Node sortedUntil = null;
+
+    // Outer loop continues until sorted part reaches the second node
+    while (sortedUntil != this.head.next) {
+
+        // Start with the head node
+        Node current = this.head;
+
+        // Inner loop for each pass
+        while (current.next != sortedUntil) {
+
+            // Compare current node with next node
+            Node nextNode = current.next;
+
+            // If current node is greater, swap values
+            if (current.value > nextNode.value) {
+                int temp = current.value;
+                current.value = nextNode.value;
+                nextNode.value = temp;
+            }
+
+            // Move to the next node
+            current = current.next;
+        }
+
+        // After each pass, the largest element is bubbled to the end
+        // Thus, update sortedUntil to point to the last sorted element
+        sortedUntil = current;
+    }
+}

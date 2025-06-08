@@ -1,0 +1,117 @@
+public void insertionSort() {
+		if (length < 2) {
+			return; // List is already sorted
+		}
+
+		Node sortedListHead = head;
+		Node unsortedListHead = head.next;
+		sortedListHead.next = null;
+
+		while (unsortedListHead != null) {
+			Node current = unsortedListHead;
+			unsortedListHead = unsortedListHead.next;
+
+			if (current.value < sortedListHead.value) {
+				current.next = sortedListHead;
+				sortedListHead = current;
+			} else {
+				Node searchPointer = sortedListHead;
+				while (searchPointer.next != null && current.value > searchPointer.next.value) {
+					searchPointer = searchPointer.next;
+				}
+				current.next = searchPointer.next;
+				searchPointer.next = current;
+			}
+		}
+
+		head = sortedListHead;
+		Node temp = head;
+		while (temp.next != null) {
+			temp = temp.next;
+		}
+		tail = temp;
+	}
+
+
+
+
+This code implements the insertion sort algorithm for a linked list. Here's how it works:
+
+If the length of the list is less than 2, the list is already sorted, so the method returns without doing anything.
+
+We start with a sorted list containing only the first element of the original list.
+
+We iterate over the remaining unsorted portion of the original list, taking each element in turn and inserting it into the correct position in the sorted list.
+
+To insert an element into the sorted list, we compare it to the elements in the sorted list until we find the correct insertion point. We do this by iterating through the sorted list with a search pointer, starting at the beginning of the sorted list, and stopping when we find an element in the sorted list that is greater than or equal to the current element.
+
+Once we find the correct insertion point, we insert the current element into the sorted list by updating the next pointers of the nodes involved.
+
+After all elements have been inserted into the sorted list, we update the head and tail pointers of the original list to point to the first and last elements of the sorted list, respectively.
+
+The Big O of the insertion sort algorithm is O(n^2).
+
+
+
+
+
+Code with inline comments:
+
+
+
+public void insertionSort() {
+    // If the list has less than 2 elements, it is already sorted
+    if (length < 2) {
+        return;
+    }
+
+    // Start with a sorted list containing only the first element
+    Node sortedListHead = head;
+
+    // Start with the second element in the unsorted list
+    Node unsortedListHead = head.next;
+
+    // Mark the end of the sorted list
+    sortedListHead.next = null;
+
+    // Iterate over the unsorted list
+    while (unsortedListHead != null) {
+
+        // Take the first element in the unsorted list
+        Node current = unsortedListHead;
+
+        // Move to the next element in the unsorted list
+        unsortedListHead = unsortedListHead.next;
+
+        // If the current element is smaller than the first element of the sorted list
+        if (current.value < sortedListHead.value) {
+            // Insert the current element at the beginning of the sorted list
+            current.next = sortedListHead;
+            // Update the sorted list head
+            sortedListHead = current;
+        } else {
+            // Start at the beginning of the sorted list
+            Node searchPointer = sortedListHead;
+
+            // Search for the correct insertion point
+            while (searchPointer.next != null && current.value > searchPointer.next.value) {
+                // Move to the next element in the sorted list
+                searchPointer = searchPointer.next;
+            }
+
+            // Insert the current element after searchPointer
+            current.next = searchPointer.next;
+            searchPointer.next = current;
+        }
+    }
+
+    // Update the head of the sorted list
+    head = sortedListHead;
+
+    // Update the tail of the sorted list
+    Node temp = head;
+    while (temp.next != null) {
+        temp = temp.next;
+    }
+    tail = temp;
+}

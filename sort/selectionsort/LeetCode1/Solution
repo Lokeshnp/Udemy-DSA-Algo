@@ -1,0 +1,102 @@
+void selectionSort() {
+        if (this.length < 2)
+            return;
+        Node current = this.head;
+        while (current.next != null) {
+            Node smallest = current;
+            Node innerCurrent = current.next;
+            while (innerCurrent != null) {
+                if (innerCurrent.value < smallest.value) {
+                    smallest = innerCurrent;
+                }
+                innerCurrent = innerCurrent.next;
+            }
+            if (smallest != current) {
+                int temp = current.value;
+                current.value = smallest.value;
+                smallest.value = temp;
+            }
+            current = current.next;
+        }
+    }
+
+
+
+
+This code represents a method for sorting a linked list using the Selection Sort algorithm.
+
+Here's a detailed step-by-step explanation:
+
+The if (this.length < 2) return; statement checks if the linked list's length is less than 2. If it's true, there is no need for sorting as a list of length 0 or 1 is already sorted.
+
+Node current = this.head; sets a node current to the head of the linked list. The current node is used to traverse the list and represent the first element of the unsorted part of the list.
+
+The while (current.next != null) { ... } loop iterates over the linked list starting from the head until the second-to-last element.
+
+Within this loop, Node smallest = current; is initializing smallest to be the current node. This smallest node will keep track of the smallest element found in the unsorted part of the list.
+
+Node innerCurrent = current.next; is setting innerCurrent to the node after current. innerCurrent is used to traverse the unsorted part of the list to find the smallest element.
+
+The inner while (innerCurrent != null) { ... } loop iterates through the unsorted part of the list starting from the node after current until the end of the list.
+
+Inside this loop, the if (innerCurrent.value < smallest.value) statement checks if the value of the innerCurrent node is less than the value of the smallest node. If it's true, smallest is updated to be innerCurrent.
+
+innerCurrent = innerCurrent.next; moves innerCurrent to the next node in the list.
+
+After the inner loop, if (smallest != current) checks if the smallest node found in the unsorted part of the list is different from current. If it's true, it means that a smaller value than current.value was found in the unsorted part of the list.
+
+If smallest is not equal to current, the values of current and smallest are swapped using a temporary variable temp.
+
+current = current.next; moves current to the next node in the list, effectively reducing the unsorted part of the list by one.
+
+
+
+This sorting method works by dividing the list into a sorted and an unsorted part. The sorted part is at the beginning of the list and is initially empty. The unsorted part is the rest of the list. The algorithm repeatedly selects the smallest element from the unsorted part and moves it to the end of the sorted part. The process continues until the unsorted part becomes empty and the list is fully sorted.
+
+
+
+
+
+Code with inline comments:
+
+
+
+void selectionSort() {
+    // If list length is less than 2, no need to sort
+    if (this.length < 2)
+        return;
+
+    // Initialize current node as head
+    Node current = this.head;
+
+    // Iterate over the list until the second last element
+    while (current.next != null) {
+
+        // Assume current node is the smallest
+        Node smallest = current;
+
+        // Start checking from the next node
+        Node innerCurrent = current.next;
+
+        // Inner loop to find smallest node in unsorted part
+        while (innerCurrent != null) {
+            // If a smaller node is found, update smallest
+            if (innerCurrent.value < smallest.value) {
+                smallest = innerCurrent;
+            }
+            // Move to the next node
+            innerCurrent = innerCurrent.next;
+        }
+
+        // Swap current node and smallest node if they're not the same
+        if (smallest != current) {
+            int temp = current.value;
+            current.value = smallest.value;
+            smallest.value = temp;
+        }
+
+        // Move to next node in the list
+        current = current.next;
+    }
+
+}
