@@ -1,0 +1,147 @@
+public void merge(LinkedList otherList) {
+        Node otherHead = otherList.getHead();
+        Node dummy = new Node(0);
+        Node current = dummy;
+
+        while (head != null && otherHead != null) {
+            if (head.value < otherHead.value) {
+                current.next = head;
+                head = head.next;
+            } else {
+                current.next = otherHead;
+                otherHead = otherHead.next;
+            }
+            current = current.next;
+        }
+
+        if (head != null) {
+            current.next = head;
+        } else {
+            current.next = otherHead;
+            tail = otherList.getTail();
+        }
+
+        head = dummy.next;
+        length += otherList.getLength();
+    }
+
+
+
+
+This code defines a method merge for a LinkedList class that takes another LinkedList object as an argument and merges it with the current list.
+
+The method first retrieves the head node of the other list by calling the getHead method on the otherList object. It then creates a new node dummy with a value of 0 to serve as the starting node of the merged list.
+
+The method then enters a while loop that continues as long as both the current list and the other list have nodes remaining. Inside the loop, it compares the values of the head nodes of the two lists, and adds the node with the smaller value to the merged list by setting the next pointer of the current node to point to that node and updating the head pointer of the corresponding list to the next node. It then moves the current pointer to the next node in the merged list.
+
+After the while loop terminates, it checks whether there are any remaining nodes in either list and adds them to the merged list. It then sets the head pointer of the current list to the first node in the merged list, updates the length of the list to include the nodes from the other list, and updates the tail pointer of the list to the last node in the other list, if the current list is empty, or to the last node in the current list, otherwise.
+
+Here's a line-by-line explanation:
+
+
+
+Node otherHead = otherList.getHead();:
+
+Gets the head node of the otherList and stores it in otherHead.
+
+Node dummy = new Node(0);:
+
+Creates a "dummy" node with value 0. This is a placeholder to ease the merging process.
+
+Node current = dummy;:
+
+Initializes current to point to the dummy node. This variable will traverse the new merged list.
+
+Outer Loop: while (head != null && otherHead != null) { ... }:
+
+This loop runs as long as both lists (this and otherList) have nodes that have not been merged.
+
+Inside Loop:
+
+if (head.value < otherHead.value) { ... }:
+
+Checks which node, from this list or otherList, has a smaller value.
+
+current.next = head; and head = head.next;:
+
+If the node from this list is smaller, it gets added to the new merged list. Then head moves to the next node.
+
+current.next = otherHead; and otherHead = otherHead.next;:
+
+Otherwise, the node from otherHead is smaller and is added. otherHead moves to its next node.
+
+current = current.next;:
+
+Moves current to the node that was just added.
+
+if (head != null) { ... } else { ... }:
+
+Checks if there are remaining nodes in either list after the main loop.
+
+current.next = head; or current.next = otherHead;:
+
+Attaches the remaining nodes from the list that still has nodes.
+
+tail = otherList.getTail();:
+
+Updates the tail of this list to the tail of otherList if otherList had remaining nodes.
+
+head = dummy.next;:
+
+Sets head to point to the start of the actual merged list, bypassing the dummy node.
+
+length += otherList.getLength();:
+
+Updates the length of this list by adding the length of otherList.
+
+
+
+
+
+Code with inline comments:
+
+
+
+public void merge(LinkedList otherList) {
+    // get the head node of the other linked list
+    Node otherHead = otherList.getHead();
+    // create a dummy node to serve as the head of the merged linked list
+    Node dummy = new Node(0);
+    // create a current node to keep track of the last node in the merged list
+    Node current = dummy;
+
+    // iterate through both input linked lists as long as they are not null
+    while (head != null && otherHead != null) {
+        // compare the values of the head nodes of the two lists
+        if (head.value < otherHead.value) {
+            // append the smaller node to the merged list and
+            //update the head of that list to its next node
+            current.next = head;
+            head = head.next;
+        } else {
+            // append the smaller node to the merged list and
+            //update the head of that list to its next node
+            current.next = otherHead;
+            otherHead = otherHead.next;
+        }
+        // update the "current" node to be the last node in the merged list
+        current = current.next;
+    }
+
+    // if either of the input lists still has nodes,
+    // append them to the end of the merged list
+    if (head != null) {
+        current.next = head;
+    } else {
+        current.next = otherHead;
+        // If current list is empty, update tail to last node of other list
+        // Otherwise, tail remains the last node of the current list
+        tail = otherList.getTail();
+    }
+
+    // update the head of the current list to be the second node
+    // in the merged list (since the first node is the dummy node)
+    head = dummy.next;
+    // update the length of the current list to reflect the merged list
+    length += otherList.getLength();
+}
